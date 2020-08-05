@@ -53,7 +53,12 @@ void classify(void){
 			case 0:
 				break;
 			case 1: //스트레이트 판별
-				if(i!=4&&num_in_rank[i]==num_in_rank[i+1]){
+				if(i==12){
+					if(num_in_rank[i]==num_in_rank[0]){
+						str_count++;
+					}
+				}
+				else if(num_in_rank[i]==num_in_rank[i+1]){
 					str_count++;
 				}
 				if(str_count==4){	//연속 횟수가 4이면 5장 카드 모두 연속인 것으로 판단. - straight.
