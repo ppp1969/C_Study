@@ -4,8 +4,8 @@
 #define NUM_SUITS (4)
 #define NUM_CARDS (5)
 
-int num_in_rank[NUM_RANKS];	//index : 0~12 	//data : 0~4
-int num_in_suit[NUM_SUITS];	//index : 0~3	//data : 0~5
+int num_in_rank[NUM_RANKS] = { 1,2,0,0,0,0,0,0,0,0,0,1,1 };	//index : 0~12 	//data : 0~4
+int num_in_suit[NUM_SUITS] = { 1,1,1,2 };	//index : 0~3	//data : 0~5
 
 bool straight, flush, four, three;
 int pairs;
@@ -17,15 +17,19 @@ int pairs;
 */
 
 void in_hand(void);
-void classify(void);
+void classifying(void);
 void result(void);
 
 int main(void){
-	for(;;){
-		in_hand();
-		classyfy();
-		result();
-	}
+	
+
+	classifying();
+	printf("straight : %d\n",straight);
+	printf("flush : %d\n",flush);
+	printf("four : %d\n",four);
+	printf("three : %d\n",three);
+	printf("pairs : %d\n",pairs);
+	
 	
 	return 0;
 }
@@ -33,7 +37,7 @@ int main(void){
 void in_hand(void){
 	
 }
-void classify(void){
+void classifying(void){
 	//문양 대조 : flush 판단
 	for(int i=0; i<NUM_SUITS;i++){
 		//flush판단.
@@ -42,12 +46,12 @@ void classify(void){
 			goto EXIT_suit;
 		}
 	}
-	EXIT_suit:
+	EXIT_suit:;
 
 	//숫자 대조 : pair, three, four, straight 판단
 	//if문으로 분할하는 것보다 스위치문이 가독성이 뛰어나서 스위치로 작성.
 
-	int str_count = 0; //
+	int str_count = 0;
 	for(int i=0;i<NUM_RANKS;i++){
 		switch(num_in_rank[i]){
 			case 0:
@@ -78,8 +82,6 @@ void classify(void){
 				break;
 		}
 	}
-	
-
 }
 void result(void){
 	
